@@ -1,1 +1,29 @@
 /*  your css code here. If applicable */
+
+/* Hide the button initially */
+.hidden {
+  display: none;
+}
+
+/* Style for the form and button */
+form {
+  margin: 20px;
+}
+
+input, button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
