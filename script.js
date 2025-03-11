@@ -1,6 +1,7 @@
 //your JS code here. If required.
 
 document.addEventListener("DOMContentLoaded" , function () {
+	let form = document.querySelector('form')
 	const submitButton = document.getElementById('submit');
 	const existingUserButton = document.getElementById('existing')
 	const userInput = document.getElementById('username');
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded" , function () {
 		existingUserButton.classList.remove("hidden");
 	}
 
-	submitButton.addEventListener("click" , (event)=> {
+	form.addEventListener("submit" , (event)=> {
 		
 		event.preventDefault();
 		const username = userInput.value;
