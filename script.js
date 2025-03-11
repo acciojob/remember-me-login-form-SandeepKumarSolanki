@@ -1,43 +1,38 @@
-//your JS code here. If required.
+document.addEventListener("DOMContentLoaded", function () {
+  const submitButton = document.getElementById("submit");
+  const existingUserButton = document.getElementById("existing");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const rememberMeCheckbox = document.getElementById("checkbox");
 
-document.addEventListener("DOMContentLoaded" , function () {
-	let form = document.querySelector('form')
-	const submitButton = document.getElementById('submit');
-	const existingUserButton = document.getElementById('existing')
-	const userInput = document.getElementById('username');
-	const passwordInput = document.getElementById('password');
-	const rememberMeCheckbox = document.getElementById('checkbox');
+  // Check if credentials are saved in localStorage
+  const savedCredentials = localStorage.getItem("userCredentials");
+  if (savedCredentials) {
+    existingUserButton.classList.remove("hidden");
+  }
 
-	const savedCredentials = localStorage.getItem('userCredentials');
-	if(savedCredentials){
-		existingUserButton.classList.remove("hidden");
-	}
+  // Form submission behavior
+  submitButton.addEventListener("click", function (e) {
+    e.preventDefault();  // Prevent form submission
+    
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    
+    alert(`Logged in as ${username}`);
 
-	form.addEventListener("submit" , (event)=> {
-		
-		event.preventDefault();
-		const username = userInput.value;
-		const password = passwordInput.value;
+    // If "Remember Me" is checked
+    if (rememberMeCheckbox.checked) {
+      localStorage.setItem("userCredentials", JSON.stringify({ username, password }));
+    } else {
+      localStorage.removeItem("userCredentials");
+    }
+  });
 
-		alert(`Logged in as ${username}`);
-
-		if(rememberMeCheckbox.checked){
-			localStorage.setItem("userCredentials" , JSON.stringigy({username , password}))
-		}else{
-			localStorage.remove("userCredentials");
-		}
-
-		
-	})
-
-	existingUserButton.addEventListener("click" , ()=> {
-		const credentials = JSON.parse(localStorage.getItem("userCredentials"));
-		if(credentials){
-			alert(`Logged in as ${credentials.username`);
-		}
-	})
-})
-
-
-
-
+  // Existing User Login Button click behavior
+  existingUserButton.addEventListener("click", function () {
+    const credentials = JSON.parse(localStorage.getItem("userCredentials"));
+    if (credentials) {
+      alert(`Logged in as ${credentials.username}`);
+    }
+  });
+});
