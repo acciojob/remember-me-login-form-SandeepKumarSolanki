@@ -1,11 +1,10 @@
 // //your JS code here. If required.
 
-// Check if credentials are saved in localStorage on page load
 document.addEventListener("DOMContentLoaded", function() {
-	// e.preventDefault();
     const existingUserButton = document.getElementById("existing");
     const storedCredentials = localStorage.getItem("credentials");
 
+    // Check if credentials are saved in localStorage on page load
     if (storedCredentials) {
         // Show "Login as existing user" button if credentials are found
         existingUserButton.style.display = "block";
