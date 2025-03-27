@@ -1,38 +1,32 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const submitButton = document.getElementById("submit");
-  const existingUserButton = document.getElementById("existing");
-  const usernameInput = document.getElementById("username");
-  const passwordInput = document.getElementById("password");
-  const rememberMeCheckbox = document.getElementById("checkbox");
+//your JS code here. If required.
 
-  // Check if credentials are saved in localStorage
-  const savedCredentials = localStorage.getItem("userCredentials");
-  if (savedCredentials) {
-    existingUserButton.classList.remove("hidden");
-  }
+let form = document.querySelector('form');
+let inputBox = document.getElementById('username');
+let passwordBox = document.getElementById('password');
+let checkboxField = document.getElementById('checkbox');
+let btn = document.getElementById('existing');
 
-  // Form submission behavior
-  submitButton.addEventListener("click", function (e) {
-    e.preventDefault();  // Prevent form submission
-    
-    const username = usernameInput.value;
-    const password = passwordInput.value;
-    
-    alert(`Logged in as ${username}`);
+form.addEventListener("submit" , (event)=>{
+	event.preventDefault();
 
-    // If "Remember Me" is checked
-    if (rememberMeCheckbox.checked) {
-      localStorage.setItem("userCredentials", JSON.stringify({ username, password }));
-    } else {
-      localStorage.removeItem("userCredentials");
-    }
-  });
+	username = inputBox.value;
+	password = passwordBox.value;
+	checkbox = checkboxField.value;
 
-  // Existing User Login Button click behavior
-  existingUserButton.addEventListener("click", function () {
-    const credentials = JSON.parse(localStorage.getItem("userCredentials"));
-    if (credentials) {
-      alert(`Logged in as ${credentials.username}`);
-    }
-  });
-});
+	alert(`Logged in as ${username}`);
+
+	if(chckbox === checkbox){
+		let data = {username,password};
+		let dataInfo = localStorage.setItem("token",JSON.stringify(data));
+	}else{
+		localStorage.remove();
+	}
+
+	if(locaStorage.getItem('token')){
+		btn.style.display='block';
+	}
+
+	btn.addEventListener('click',()=>{
+		alert(`Logged in as ${username}`);
+	})
+})
